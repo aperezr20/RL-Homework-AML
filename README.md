@@ -16,11 +16,15 @@ To properlly understand the **Home World Game** we recommend you to read the REA
 
 ## Part 1. Tabular Q-Learning (2 points)
 
+
+
 In this section, you will implement the Q-learning algorithm using the ```agent_tabular_ql.py``` file, which is a model-free algorithm used to learn an optimal Q-function. In the tabular setting, the algorithm maintains the Q-value for all possible state-action pairs. Starting from a random Q-function, the agent continuously collects experiences $(s,c,R(s,c),s')$ and updates its Q-function.
 
 From now on, we will refer to $c = (a, b)$ as “an action" although it really is an action with an object.
 
 ### Q-learning Algorithm
+
+*** CODE (1.5 points) ***
 
 The agent plays an action $c$ at state $s$, getting a reward $R(s,c)$ and observing the next state $s'$.
 
@@ -40,17 +44,19 @@ Please include in your report the number of epochs and the plot when the learnin
 
 Check the ```useful2know``` folder to get better insights on how the code works and how are all ```.py``` files useful.
 
-***QUESTIONS:***
+*** QUESTIONS (0.5 points) ***
 - What happen to the convergence of the Q-learning algorithm for very large $\varepsilon = 1$ compared to a small $\varepsilon = 0.00001$?
 - What happen to the convergence of the Q-learning algorithm for different values of $\alpha$? Fix $\varepsilon = 0.5$  and do the experiments with different values of the training $\alpha \in [10^{-6}, 1]$. Explain you results.
 
 ## Part 2. Deep Q-network (2 points)
 
+*** CODE (1.5 points) ***
+
 Since the state displayed to the agent is described in text, we have to choose a mechanism that maps text descriptions into vector representations. A naive way is to create one unique index for each text description, as we have done in previous part. However, such approach becomes infeasible when the state space becomes huge. To tackle this challenge, we can design some representation generator that does not scale as the original textual state space. In particular, a representation generator $\phi_R(\cdot)$ reads raw text displayed to the agent and converts it to a vector representation $v_{s}=\psi _{R}(s)$. One approach is to use a bag-of-words representation derived from the text description.
 
 In this part, you will approximate $Q(s, c)$ with a neural network. You will be provided with a DQN that takes the state representation (bag-of-words) and outputs the predicted Q values for the different "actions" and "objects". Complete the function ```deep_q_learning``` that updates the model weights, given the transition date $(s,c,R(s,c),s')$. Also, complete the necessary TODOs. Please include in your report the average episodic rewards of your Q-learning algorithm when it converges.
 
-***QUESTIONS:*** 
+*** QUESTIONS (0.5 points) *** 
 - How would you change your model if the state displayed to the agent was an image of the state rather than a text description?
 - What is the purpose of the epsilon parameter on the $\varepsilon$-greedy function? Explain what would happen if $\varepsilon = 0$ or $\varepsilon = 1$.
 
@@ -65,11 +71,11 @@ conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 -c pytorch
 pip install -r requirements.txt
 ```
 
-Now that you have your environment ready, you will have to play with three parameters of those mentioned above and perform at least 6 experiments. In your report, include the Reward vs Episode charts and briefly discuss them. Also, include a gif in your repo that compares the performance of the algorithm in a low episode, a mid episode, and a high episode. In your report, include a brief analysis of these animations.
+Now that you have your environment ready, you will have to play with three parameters of those mentioned above and perform at least 6 experiments (0.2 points). In your report, include the Reward vs Episode charts and briefly discuss them (0.3 points). Also, include a gif in your repo that compares the performance of the algorithm in a low episode, a mid episode, and a high episode (0.2 points). In your report, include a brief analysis of these animations (0.3 points).
 
 ## ¡BONUS! (0.3 points)
 
-Experiment with different values of $\gamma$ using tabular and DeepQN with bag of words and comment on the influence of these parameter in the results.
+Experiment with 4 different values of $\gamma$ using tabular and DeepQN with bag of words and comment on the influence of these parameter in the results on your report.
 
 ## Report
 
